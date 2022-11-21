@@ -12,7 +12,7 @@ describe("Nucleoid Data Store", () => {
   after(() => datastore.clear());
 
   it("handles valid data set", () => {
-    const dataset = ["ABCDEF", "GHIJKL", "MNOPQR"];
+    const dataset = [{ test: "ABC" }, { test: 123 }, { test: [1, 2] }];
     dataset.forEach((data) => datastore.write(data));
 
     const result = datastore.read();

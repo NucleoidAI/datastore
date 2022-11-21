@@ -22,7 +22,7 @@ function write(data) {
     iv
   );
 
-  let en = cipher.update(data);
+  let en = cipher.update(JSON.stringify(data));
   en = Buffer.concat([en, cipher.final()]);
   hash = iv.toString("hex") + ":" + en.toString("hex");
 
@@ -55,7 +55,7 @@ function read() {
 
       let de = decipher.update(en);
       de = Buffer.concat([de, decipher.final()]);
-      return de.toString();
+      return JSON.parse(de.toString());
     });
 }
 
