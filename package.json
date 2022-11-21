@@ -1,0 +1,26 @@
+{
+  "name": "@nucleoidjs/synapses",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha 'src/**/*.spec.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NucleoidJS/template-node.git"
+  },
+  "author": "Nuc Team",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/NucleoidJS/template-node/issues"
+  },
+  "homepage": "https://github.com/NucleoidJS/template-node#readme",
+  "devDependencies": {
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "mocha": "^9.2.2",
+    "prettier": "^2.6.2",
+    "uuid": "^9.0.0"
+  }
+}
