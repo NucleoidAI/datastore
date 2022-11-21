@@ -1,4 +1,4 @@
-const datastore = require("../datastore");
+const datastore = require("../../index");
 const { equal, notEqual, deepEqual, throws } = require("assert");
 const uuid = require("uuid").v4;
 
