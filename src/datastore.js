@@ -59,6 +59,10 @@ function read() {
     });
 }
 
-function clear() {}
+function clear() {
+  const { path } = _options;
+  fs.rmSync(path, { recursive: true, force: true });
+  fs.mkdirSync(path, { recursive: true });
+}
 
 module.exports = { init, write, read, clear };

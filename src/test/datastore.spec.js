@@ -8,6 +8,9 @@ datastore.init({
 });
 
 describe("Nucleoid Data Store", () => {
+  before(() => datastore.clear());
+  after(() => datastore.clear());
+
   it("handles valid data set", () => {
     const dataset = ["ABCDEF", "GHIJKL", "MNOPQR"];
     dataset.forEach((data) => datastore.write(data));
