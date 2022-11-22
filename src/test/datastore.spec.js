@@ -1,5 +1,5 @@
 const datastore = require("../../index");
-const { equal, notEqual, deepEqual, throws } = require("assert");
+const { deepEqual } = require("assert");
 const uuid = require("uuid").v4;
 
 datastore.init({
@@ -38,5 +38,10 @@ describe("Nucleoid Data Store", () => {
 
     const result = datastore.read();
     deepEqual(result, dataset1.concat(dataset2));
+  });
+
+  it("returns empty array if data store does not exist yet", () => {
+    const result = datastore.read();
+    deepEqual(result, []);
   });
 });
