@@ -1,6 +1,7 @@
 const fs = require("fs");
 const decrypt = require("./libs/decrypt");
 const options = require("./options");
+const CorruptHash = require("./corrupt-hash");
 
 function read() {
   const { id, path, key } = options();
@@ -17,7 +18,12 @@ function read() {
       .map((line) => {
         const de = decrypt(hash, line);
         hash = line;
-        return JSON.parse(de.toString());
+
+        try {
+          return JSON.parse(de.toString());
+        } catch (err) {
+          throw new CorruptHash();
+        }
       });
   } else {
     return [];
