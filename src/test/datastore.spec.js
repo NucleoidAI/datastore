@@ -51,12 +51,24 @@ describe("Nucleoid Data Store", () => {
   });
 
   it("throws error if any hash is missing", () => {
-    const dataset1 = [{ test: "XYZ" }, { test: 1 }, { test: true }];
-    dataset1.forEach((data) => datastore.write(data));
+    const dataset = [{ test: "XYZ" }, { test: 1 }, { test: true }];
+    dataset.forEach((data) => datastore.write(data));
 
     const data = fs.readFileSync(`${path}/${id}`, "utf8");
     const updated = data.trim().split("\n");
     updated.splice(1, 1);
+    fs.writeFileSync(`${path}/${id}`, updated.join("\n"));
+
+    throws(() => datastore.read(), CorruptHash);
+  });
+
+  it("throws error if any hash is changed", () => {
+    const dataset = [{ test: "XYZ" }, { test: 1 }, { test: true }];
+    dataset.forEach((data) => datastore.write(data));
+
+    const data = fs.readFileSync(`${path}/${id}`, "utf8");
+    const updated = data.trim().split("\n");
+    updated[1] += "x";
     fs.writeFileSync(`${path}/${id}`, updated.join("\n"));
 
     throws(() => datastore.read(), CorruptHash);
