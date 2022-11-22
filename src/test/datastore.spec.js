@@ -17,9 +17,7 @@ describe("Nucleoid Data Store", () => {
     dataset.forEach((data) => datastore.write(data));
 
     const result = datastore.read();
-    deepEqual(result[0], dataset[0]);
-    deepEqual(result[1], dataset[1]);
-    deepEqual(result[2], dataset[2]);
+    deepEqual(result, dataset);
   });
 
   it("tails last n statements", () => {
@@ -27,7 +25,18 @@ describe("Nucleoid Data Store", () => {
     dataset.forEach((data) => datastore.write(data));
 
     const result = datastore.tail();
-    deepEqual(result[0], dataset[1]);
-    deepEqual(result[1], dataset[0]);
+    deepEqual(result, dataset.reverse());
+  });
+
+  it("continues writing after restart", () => {
+    const dataset1 = [{ test: "ABC" }, { test: [1, 2] }];
+    dataset1.forEach((data) => datastore.write(data));
+    datastore.init({});
+
+    const dataset2 = [{ test: "DEF" }, { test: [3, 4] }];
+    dataset2.forEach((data) => datastore.write(data));
+
+    const result = datastore.read();
+    deepEqual(result, dataset1.concat(dataset2));
   });
 });
