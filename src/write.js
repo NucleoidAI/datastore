@@ -7,8 +7,10 @@ function write(data) {
   const { id, path, key } = options();
 
   const en = encrypt(hash() ? hash() + ":" + key : key, data);
-  hash(en);
   fs.appendFileSync(`${path}/${id}`, `${en}\n`);
+
+  hash(en);
+  return en;
 }
 
 module.exports = write;
