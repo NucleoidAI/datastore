@@ -10,13 +10,13 @@ function read() {
     // TODO Replace with stream
     const data = fs.readFileSync(`${path}/${id}`, "utf8");
 
-    let hash = key;
+    let hash;
 
     return data
       .trim()
       .split("\n")
       .map((line) => {
-        const de = decrypt(hash, line);
+        const de = decrypt(hash ? hash + ":" + key : key, line);
         hash = line;
 
         try {
