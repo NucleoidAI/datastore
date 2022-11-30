@@ -2,13 +2,12 @@ const crypto = require("crypto");
 const options = require("../options");
 
 function encrypt(key, data) {
-  const { salt, algorithm } = options();
-  const buffer = crypto.scryptSync(key, salt, 32);
-
+  const { algorithm } = options();
   const iv = crypto.randomBytes(16);
+
   const cipher = crypto.createCipheriv(
     algorithm,
-    Buffer.from(buffer, "hex"),
+    crypto.createHash("md5").update(key).digest("hex"),
     iv
   );
 

@@ -2,8 +2,7 @@ const uuid = require("uuid").v4;
 const home = require("os").homedir();
 
 let _options = {
-  key: "0c3Yc2KDj0rQWq9aJEnOGNzsNb4IrHPq",
-  salt: "UqD4yJPYL5gkbJZsahPJItNiQYNoiN20",
+  key: "EOsDDQ1zovGCl0iTZUxRmrks1GM86jRX",
   algorithm: "aes-256-ctr",
 };
 
