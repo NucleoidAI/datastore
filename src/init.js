@@ -3,7 +3,7 @@ const fs = require("fs");
 const clear = require("./clear");
 const hash = require("./hash");
 
-function init(options) {
+function init(options = {}) {
   const { id, path } = _options(options);
 
   if (!fs.existsSync(path)) {

@@ -1,3 +1,6 @@
+const uuid = require("uuid").v4;
+const home = require("os").homedir();
+
 let _options = {
   key: "0c3Yc2KDj0rQWq9aJEnOGNzsNb4IrHPq",
   salt: "UqD4yJPYL5gkbJZsahPJItNiQYNoiN20",
@@ -6,7 +9,9 @@ let _options = {
 
 module.exports = (options) => {
   if (options) {
-    _options = { ..._options, ...options };
+    const id = options.id || uuid();
+    const path = options.path || `${home}/.nuc/data`;
+    _options = { ..._options, ...options, id, path };
   }
 
   return _options;
