@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NucleoidJS/datastore.git"
+    "url": "git+https://github.com/NucleoidJS/DataStore.git"
   },
   "author": "Nuc Team",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/NucleoidJS/datastore/issues"
+    "url": "https://github.com/NucleoidJS/DataStore/issues"
   },
-  "homepage": "https://github.com/NucleoidJS/datastore#readme",
+  "homepage": "https://github.com/NucleoidJS/DataStore#readme",
   "devDependencies": {
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",

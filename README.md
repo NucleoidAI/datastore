@@ -72,3 +72,6 @@ dc2d6d47071db41845fa8631b131bef5:0ec5427dd957ccb46fbd6884290eb0de9696102405fc606
 
 ## Benchmark
 
+![benchmark](.github/media/benchmark.png)
+
+Ubuntu 22.04 on AWS EC2 t2.micro with [benchmark.js](benchmark.js)
