@@ -36,7 +36,7 @@ describe("Nucleoid Data Store", () => {
   it("continues writing after restart", () => {
     const dataset1 = [{ test: "ABC" }, { test: [1, 2] }];
     dataset1.forEach((data) => datastore.write(data));
-    datastore.init({});
+    datastore.init();
 
     const dataset2 = [{ test: "DEF" }, { test: [3, 4] }];
     dataset2.forEach((data) => datastore.write(data));

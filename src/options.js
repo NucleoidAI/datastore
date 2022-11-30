@@ -7,10 +7,12 @@ let _options = {
   algorithm: "aes-256-ctr",
 };
 
+let id, path;
+
 module.exports = (options) => {
   if (options) {
-    const id = options.id || uuid();
-    const path = options.path || `${home}/.nuc/data`;
+    id = options.id || id || uuid();
+    path = options.path || path || `${home}/.nuc/data`;
     _options = { ..._options, ...options, id, path };
   }
 
