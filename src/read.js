@@ -17,7 +17,7 @@ function read() {
       .trim()
       .split("\n")
       .map((line) => {
-        const de = decrypt(`${hash}:${key}`, line);
+        const de = decrypt(`${hash}.${key}`, line);
         hash = line;
 
         try {

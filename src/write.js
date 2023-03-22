@@ -6,7 +6,7 @@ const encrypt = require("./libs/encrypt");
 function write(data) {
   const { id, path, key } = options();
 
-  const en = encrypt(`${hash()}:${key}`, data);
+  const en = encrypt(`${hash()}.${key}`, data);
   fs.appendFileSync(`${path}/${id}`, `${en}\n`);
 
   hash(en);
