@@ -5,5 +5,4 @@ class CorruptHash extends Error {
 }
 
 CorruptHash.prototype.name = "CorruptHash";
-
 module.exports = CorruptHash;

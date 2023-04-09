@@ -1,16 +1,24 @@
 const fs = require("fs");
 const hash = require("./hash");
-const options = require("./options");
-const encrypt = require("./libs/encrypt");
+const encrypt = require("./lib/encrypt");
+const config = require("./config");
 
 function write(data) {
-  const { id, path, key } = options();
+  const {
+    id,
+    path,
+    data: { key, encryption },
+  } = config();
 
-  const en = encrypt(`${hash()}.${key}`, data);
-  fs.appendFileSync(`${path}/${id}`, `${en}\n`);
-
-  hash(en);
-  return en;
+  if (encryption) {
+    const en = encrypt(`${hash()}.${key}`, data);
+    fs.appendFileSync(`${path}/data/${id}`, `${en}\n`);
+    hash(en);
+    return en;
+  } else {
+    fs.appendFileSync(`${path}/data/${id}`, `${data}\n`);
+    return data;
+  }
 }
 
 module.exports = write;

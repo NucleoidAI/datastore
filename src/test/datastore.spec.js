@@ -1,19 +1,14 @@
-const datastore = require("../../index");
+const datastore = require("../datastore");
 const { deepEqual, throws } = require("assert");
 const fs = require("fs");
-const CorruptHash = require("../corrupt-hash");
-const uuid = require("uuid").v4;
+const CorruptHash = require("../CorruptHash");
+const { v4: uuid } = require("uuid");
 
 const id = uuid();
 const path = `${__dirname}/tmp`;
 
-datastore.init({
-  id,
-  path,
-  clear: true,
-});
-
 describe("Nucleoid Data Store", () => {
+  before(() => datastore.init({ id, path }, true));
   beforeEach(() => datastore.clear());
   after(() => datastore.clear());
 
@@ -36,7 +31,7 @@ describe("Nucleoid Data Store", () => {
   it("continues writing after restart", () => {
     const dataset1 = [{ test: "ABC" }, { test: [1, 2] }];
     dataset1.forEach((data) => datastore.write(data));
-    datastore.init();
+    datastore.init({ id, path }, false);
 
     const dataset2 = [{ test: "DEF" }, { test: [3, 4] }];
     dataset2.forEach((data) => datastore.write(data));
@@ -54,10 +49,10 @@ describe("Nucleoid Data Store", () => {
     const dataset = [{ test: "XYZ" }, { test: 1 }, { test: true }];
     dataset.forEach((data) => datastore.write(data));
 
-    const data = fs.readFileSync(`${path}/${id}`, "utf8");
+    const data = fs.readFileSync(`${path}/data/${id}`, "utf8");
     const updated = data.trim().split("\n");
     updated.splice(1, 1);
-    fs.writeFileSync(`${path}/${id}`, updated.join("\n"));
+    fs.writeFileSync(`${path}/data/${id}`, updated.join("\n"));
 
     throws(() => datastore.read(), CorruptHash);
   });
@@ -66,10 +61,10 @@ describe("Nucleoid Data Store", () => {
     const dataset = [{ test: "XYZ" }, { test: 1 }, { test: true }];
     dataset.forEach((data) => datastore.write(data));
 
-    const data = fs.readFileSync(`${path}/${id}`, "utf8");
+    const data = fs.readFileSync(`${path}/data/${id}`, "utf8");
     const updated = data.trim().split("\n");
     updated[1] += "x";
-    fs.writeFileSync(`${path}/${id}`, updated.join("\n"));
+    fs.writeFileSync(`${path}/data/${id}`, updated.join("\n"));
 
     throws(() => datastore.read(), CorruptHash);
   });

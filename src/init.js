@@ -1,25 +1,24 @@
-const _options = require("./options");
 const fs = require("fs");
-const clear = require("./clear");
 const hash = require("./hash");
+const setConfig = require("./config");
 
-function init(options = {}) {
-  const { id, path } = _options(options);
+function init(config = {}, clear = false) {
+  const { id, path } = setConfig(config);
 
-  if (!fs.existsSync(path)) {
-    fs.mkdirSync(path, { recursive: true });
+  if (!id) {
+    console.error("No id provided");
+    process.exit(1);
   }
 
-  if (fs.existsSync(`${path}/${id}`)) {
+  if (fs.existsSync(`${path}/data/${id}`)) {
     // TODO Replace with stream
-    const data = fs.readFileSync(`${path}/${id}`, "utf8");
+    const data = fs.readFileSync(`${path}/data/${id}`, "utf8");
     const last = data.trim().split("\n").pop();
     hash(last);
   }
 
-  if (options.clear) {
-    clear();
-    _options({ clear: false });
+  if (clear) {
+    require("./clear")();
   }
 }
 

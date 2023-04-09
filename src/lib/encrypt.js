@@ -1,8 +1,10 @@
 const crypto = require("crypto");
-const options = require("../options");
+const config = require("../config");
 
 function encrypt(key, data) {
-  const { algorithm } = options();
+  const {
+    data: { algorithm },
+  } = config();
   const iv = crypto.randomBytes(16);
 
   const cipher = crypto.createCipheriv(

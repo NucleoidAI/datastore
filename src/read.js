@@ -1,15 +1,33 @@
 const fs = require("fs");
-const decrypt = require("./libs/decrypt");
-const options = require("./options");
-const CorruptHash = require("./corrupt-hash");
+const decrypt = require("./lib/decrypt");
+const CorruptHash = require("./CorruptHash");
+const CorruptData = require("./CorruptData");
 const genesis = require("./genesis");
+const config = require("./config");
 
 function read() {
-  const { id, path, key } = options();
+  const {
+    id,
+    path,
+    data: { key, encryption },
+  } = config();
 
-  if (fs.existsSync(`${path}/${id}`)) {
+  if (fs.existsSync(`${path}/data/${id}`)) {
     // TODO Replace with stream
-    const data = fs.readFileSync(`${path}/${id}`, "utf8");
+    const data = fs.readFileSync(`${path}/data/${id}`, "utf8");
+
+    if (!encryption) {
+      return data
+        .trim()
+        .split("\n")
+        .map((line) => {
+          try {
+            return JSON.parse(line);
+          } catch (err) {
+            throw new CorruptData();
+          }
+        });
+    }
 
     let hash = genesis();
 

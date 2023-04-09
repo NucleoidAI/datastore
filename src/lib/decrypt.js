@@ -1,8 +1,10 @@
 const crypto = require("crypto");
-const options = require("../options");
+const config = require("../config");
 
 function decrypt(key, hash) {
-  const { algorithm } = options();
+  const {
+    data: { algorithm },
+  } = config();
   const parts = hash.split(":");
   const iv = Buffer.from(parts.shift(), "hex");
   const en = Buffer.from(parts.join(":"), "hex");
