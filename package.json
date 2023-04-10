@@ -16,13 +16,19 @@
     "url": "https://github.com/NucleoidJS/DataStore/issues"
   },
   "homepage": "https://github.com/NucleoidJS/DataStore#readme",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "joi": "^17.9.1",
+    "uuid": "^9.0.0",
+    "yargs": "^17.7.1"
+  },
   "devDependencies": {
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "mocha": "^9.2.2",
-    "prettier": "^2.6.2"
-  },
-  "dependencies": {
-    "uuid": "^9.0.0"
+    "prettier": "^2.6.2",
+    "supertest": "^6.3.3"
   }
 }
