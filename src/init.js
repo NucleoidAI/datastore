@@ -1,9 +1,8 @@
 const fs = require("fs");
 const hash = require("./hash");
-const setConfig = require("./config");
 
 function init(config = {}, clear = false) {
-  const { id, path } = setConfig(config);
+  const { id, path } = require("./config").init(config);
 
   if (!id) {
     console.error("No id provided");
