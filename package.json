@@ -2,7 +2,6 @@
   "name": "@nucleoidjs/datastore",
   "version": "1.1.1",
   "description": "On-chain Data Store",
-  "main": "index.js",
   "scripts": {
     "test": "mocha 'src/**/*.spec.js'"
   },
@@ -10,7 +9,7 @@
     "type": "git",
     "url": "git+https://github.com/NucleoidJS/DataStore.git"
   },
-  "author": "Nuc Team",
+  "author": "NucTeam",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/NucleoidJS/DataStore/issues"
@@ -26,6 +25,7 @@
     "yargs": "^17.7.1"
   },
   "devDependencies": {
+    "@nucleoidjs/kafkajs-mock": "^0.0.1",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "mocha": "^10.2.0",
