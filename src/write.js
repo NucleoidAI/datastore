@@ -16,7 +16,7 @@ function write(data) {
     hash(en);
     return en;
   } else {
-    fs.appendFileSync(`${path}/data/${id}`, `${data}\n`);
+    fs.appendFileSync(`${path}/data/${id}`, `${JSON.stringify(data)}\n`);
     return data;
   }
 }
