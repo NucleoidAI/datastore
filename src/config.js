@@ -14,7 +14,9 @@ let _config = { ...defaultConfig };
 
 function init(config = {}) {
   _config = {
+    id: config.id,
     path: config.path || defaultConfig.path,
+    event: config.event,
     data: { ...defaultConfig.data, ...config.data },
   };
 
