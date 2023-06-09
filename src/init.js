@@ -9,9 +9,9 @@ function init(config = {}, clear = false) {
     process.exit(1);
   }
 
-  if (fs.existsSync(`${path}/data/${id}`)) {
+  if (fs.existsSync(`${path}/data/${id}.dat`)) {
     // TODO Replace with stream
-    const data = fs.readFileSync(`${path}/data/${id}`, "utf8");
+    const data = fs.readFileSync(`${path}/data/${id}.dat`, "utf8");
     const last = data.trim().split("\n").pop();
     hash(last);
   }

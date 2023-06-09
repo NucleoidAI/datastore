@@ -12,9 +12,9 @@ function read() {
     data: { key, encryption },
   } = config();
 
-  if (fs.existsSync(`${path}/data/${id}`)) {
+  if (fs.existsSync(`${path}/data/${id}.dat`)) {
     // TODO Replace with stream
-    const data = fs.readFileSync(`${path}/data/${id}`, "utf8");
+    const data = fs.readFileSync(`${path}/data/${id}.dat`, "utf8");
 
     if (!encryption) {
       return data

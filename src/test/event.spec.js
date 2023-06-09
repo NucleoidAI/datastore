@@ -37,7 +37,7 @@ describe("Event listener", () => {
       topic: "DATA",
       messages: [{ value: JSON.stringify({ id, hash: "123" }) }],
     });
-    const hash = fs.readFileSync(`${path}/data/${id}`, "utf8").trim();
+    const hash = fs.readFileSync(`${path}/data/${id}.dat`, "utf8").trim();
     equal(hash, "123");
   });
 });

@@ -17,7 +17,7 @@ app.get("/data/:id", (req, res) => {
   const { path } = config();
 
   // TODO Convert to gzip encoding
-  res.download(`${path}/data/${id}`);
+  res.download(`${path}/data/${id}.dat`);
 });
 
 // eslint-disable-next-line no-unused-vars

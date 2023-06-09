@@ -49,10 +49,10 @@ describe("Nucleoid Data Store", () => {
     const dataset = [{ test: "XYZ" }, { test: 1 }, { test: true }];
     dataset.forEach((data) => datastore.write(data));
 
-    const data = fs.readFileSync(`${path}/data/${id}`, "utf8");
+    const data = fs.readFileSync(`${path}/data/${id}.dat`, "utf8");
     const updated = data.trim().split("\n");
     updated.splice(1, 1);
-    fs.writeFileSync(`${path}/data/${id}`, updated.join("\n"));
+    fs.writeFileSync(`${path}/data/${id}.dat`, updated.join("\n"));
 
     throws(() => datastore.read(), CorruptHash);
   });
@@ -61,10 +61,10 @@ describe("Nucleoid Data Store", () => {
     const dataset = [{ test: "XYZ" }, { test: 1 }, { test: true }];
     dataset.forEach((data) => datastore.write(data));
 
-    const data = fs.readFileSync(`${path}/data/${id}`, "utf8");
+    const data = fs.readFileSync(`${path}/data/${id}.dat`, "utf8");
     const updated = data.trim().split("\n");
     updated[1] += "x";
-    fs.writeFileSync(`${path}/data/${id}`, updated.join("\n"));
+    fs.writeFileSync(`${path}/data/${id}.dat`, updated.join("\n"));
 
     throws(() => datastore.read(), CorruptHash);
   });

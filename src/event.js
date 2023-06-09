@@ -17,7 +17,7 @@ async function listen() {
   await consumer.run({
     eachMessage: ({ message }) => {
       const { id, hash } = JSON.parse(message.value.toString());
-      fs.appendFileSync(`${path}/data/${id}`, `${hash}\n`);
+      fs.appendFileSync(`${path}/data/${id}.dat`, `${hash}\n`);
     },
   });
 }

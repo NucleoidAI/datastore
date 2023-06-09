@@ -12,11 +12,11 @@ function write(data) {
 
   if (encryption) {
     const en = encrypt(`${hash()}.${key}`, data);
-    fs.appendFileSync(`${path}/data/${id}`, `${en}\n`);
+    fs.appendFileSync(`${path}/data/${id}.dat`, `${en}\n`);
     hash(en);
     return en;
   } else {
-    fs.appendFileSync(`${path}/data/${id}`, `${JSON.stringify(data)}\n`);
+    fs.appendFileSync(`${path}/data/${id}.dat`, `${JSON.stringify(data)}\n`);
     return data;
   }
 }
